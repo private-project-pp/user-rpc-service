@@ -3,6 +3,8 @@ module github.com/private-project-pp/user-rpc-service
 go 1.22.2
 
 require (
+	github.com/jmoiron/sqlx v1.4.0 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
