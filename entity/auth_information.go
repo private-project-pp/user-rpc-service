@@ -6,7 +6,7 @@ import (
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
 )
 
-type User struct {
+type AuthInformation struct {
 	SecureId    string    `gorm:"column:id"`
 	CreatedAt   time.Time `gorm:"column:created_at"`
 	CreatedBy   string    `gorm:"column:created_by"`
@@ -18,6 +18,6 @@ type User struct {
 	Status      string    `gorm:"column:status"`
 }
 
-func (User) TableName() string {
+func (AuthInformation) TableName() string {
 	return constant.AuthInformation
 }

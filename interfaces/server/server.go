@@ -12,12 +12,10 @@ func StartService() (err error) {
 	if err != nil {
 		return err
 	}
-	_ = db
 
 	// setup repository
-	userRepo := postgre.SetupUserRepo(db)
+	authInfoRepo := postgre.SetupAuthInformationRepo(db)
 
-	_ = userRepo
-
+	_ = authInfoRepo
 	return nil
 }
