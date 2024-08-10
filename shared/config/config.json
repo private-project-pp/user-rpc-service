@@ -1,7 +1,7 @@
 {
     "service":{
         "name":"user_rpc_service",
-        "port":"8090"
+        "port":":8090"
     },
     "db":{
         "host":"postgresql://postgres:12345678@127.0.0.1:5432/playground?search_path=public"
