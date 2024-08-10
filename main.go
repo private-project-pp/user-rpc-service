@@ -12,5 +12,7 @@ import (
 
 func main() {
 	server.StartService()
-	fmt.Println("Config from main =>", config.Service.Name)
+	fmt.Println(config.Service.Name)
+	fmt.Printf("Running on PORT [:%s]", config.Service.Port)
+	fmt.Println()
 }

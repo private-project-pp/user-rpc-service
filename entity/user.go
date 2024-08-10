@@ -1,11 +1,16 @@
 package entity
 
-import "time"
+import (
+	"time"
+
+	"github.com/private-project-pp/user-rpc-service/shared/constant"
+)
 
 type User struct {
-	SecureId    string    `gorm:"column:secure_id"`
+	SecureId    string    `gorm:"column:id"`
 	CreatedAt   time.Time `gorm:"column:created_at"`
 	CreatedBy   string    `gorm:"column:created_by"`
+	UserId      string    `gorm:"column:user_id"`
 	Email       string    `gorm:"column:email"`
 	Password    string    `gorm:"column:password"`
 	Username    string    `gorm:"column:username"`
@@ -14,5 +19,5 @@ type User struct {
 }
 
 func (User) TableName() string {
-	return "user"
+	return constant.AuthInformation
 }
