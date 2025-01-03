@@ -4,6 +4,6 @@
         "port":":8090"
     },
     "db":{
-        "host":"postgresql://postgres:12345678@127.0.0.1:5432/playground?search_path=public"
+        "host":"postgresql://root:12345678@192.168.1.102:3002/playground?search_path=public"
     }
 }
