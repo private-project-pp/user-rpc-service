@@ -6,11 +6,11 @@ import (
 )
 
 type authService struct {
-	authRepo domain.AuthInformation
+	authRepo domain.UsersAuthInformation
 	model.UnimplementedAuthenticationServiceServer
 }
 
-func SetupAuthService(authRepo domain.AuthInformation) model.AuthenticationServiceServer {
+func SetupAuthService(authRepo domain.UsersAuthInformation) model.AuthenticationServiceServer {
 	return &authService{
 		authRepo: authRepo,
 	}

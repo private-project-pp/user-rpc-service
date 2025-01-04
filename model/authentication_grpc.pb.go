@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: authentication/authentication_interface.proto
+// source: authentication/authentication.proto
 
 package model
 
@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthenticationService_ValidateLogin_FullMethodName = "/model.AuthenticationService/ValidateLogin"
+	AuthenticationService_ValidateUserLogin_FullMethodName = "/model.AuthenticationService/ValidateUserLogin"
 )
 
 // AuthenticationServiceClient is the client API for AuthenticationService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthenticationServiceClient interface {
-	ValidateLogin(ctx context.Context, in *LoginValidationRequest, opts ...grpc.CallOption) (*LoginValidationResponse, error)
+	ValidateUserLogin(ctx context.Context, in *LoginValidationRequest, opts ...grpc.CallOption) (*LoginValidationResponse, error)
 }
 
 type authenticationServiceClient struct {
@@ -37,10 +37,10 @@ func NewAuthenticationServiceClient(cc grpc.ClientConnInterface) AuthenticationS
 	return &authenticationServiceClient{cc}
 }
 
-func (c *authenticationServiceClient) ValidateLogin(ctx context.Context, in *LoginValidationRequest, opts ...grpc.CallOption) (*LoginValidationResponse, error) {
+func (c *authenticationServiceClient) ValidateUserLogin(ctx context.Context, in *LoginValidationRequest, opts ...grpc.CallOption) (*LoginValidationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginValidationResponse)
-	err := c.cc.Invoke(ctx, AuthenticationService_ValidateLogin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AuthenticationService_ValidateUserLogin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,23 +48,25 @@ func (c *authenticationServiceClient) ValidateLogin(ctx context.Context, in *Log
 }
 
 // AuthenticationServiceServer is the server API for AuthenticationService service.
-// All implementations should embed UnimplementedAuthenticationServiceServer
+// All implementations must embed UnimplementedAuthenticationServiceServer
 // for forward compatibility.
 type AuthenticationServiceServer interface {
-	ValidateLogin(context.Context, *LoginValidationRequest) (*LoginValidationResponse, error)
+	ValidateUserLogin(context.Context, *LoginValidationRequest) (*LoginValidationResponse, error)
+	mustEmbedUnimplementedAuthenticationServiceServer()
 }
 
-// UnimplementedAuthenticationServiceServer should be embedded to have
+// UnimplementedAuthenticationServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
 type UnimplementedAuthenticationServiceServer struct{}
 
-func (UnimplementedAuthenticationServiceServer) ValidateLogin(context.Context, *LoginValidationRequest) (*LoginValidationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidateLogin not implemented")
+func (UnimplementedAuthenticationServiceServer) ValidateUserLogin(context.Context, *LoginValidationRequest) (*LoginValidationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateUserLogin not implemented")
 }
-func (UnimplementedAuthenticationServiceServer) testEmbeddedByValue() {}
+func (UnimplementedAuthenticationServiceServer) mustEmbedUnimplementedAuthenticationServiceServer() {}
+func (UnimplementedAuthenticationServiceServer) testEmbeddedByValue()                               {}
 
 // UnsafeAuthenticationServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to AuthenticationServiceServer will
@@ -84,20 +86,20 @@ func RegisterAuthenticationServiceServer(s grpc.ServiceRegistrar, srv Authentica
 	s.RegisterService(&AuthenticationService_ServiceDesc, srv)
 }
 
-func _AuthenticationService_ValidateLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthenticationService_ValidateUserLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LoginValidationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthenticationServiceServer).ValidateLogin(ctx, in)
+		return srv.(AuthenticationServiceServer).ValidateUserLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthenticationService_ValidateLogin_FullMethodName,
+		FullMethod: AuthenticationService_ValidateUserLogin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthenticationServiceServer).ValidateLogin(ctx, req.(*LoginValidationRequest))
+		return srv.(AuthenticationServiceServer).ValidateUserLogin(ctx, req.(*LoginValidationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -110,10 +112,10 @@ var AuthenticationService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthenticationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ValidateLogin",
-			Handler:    _AuthenticationService_ValidateLogin_Handler,
+			MethodName: "ValidateUserLogin",
+			Handler:    _AuthenticationService_ValidateUserLogin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "authentication/authentication_interface.proto",
+	Metadata: "authentication/authentication.proto",
 }

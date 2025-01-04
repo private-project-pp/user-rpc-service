@@ -1,6 +1,6 @@
 package constant
 
 const (
-	AuthInformation = "auth_information"
+	AuthInformation = "users_auth_information"
 	UsersEntity     = "users"
 )

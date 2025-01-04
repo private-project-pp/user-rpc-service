@@ -4,11 +4,14 @@ option go_package="/model";
 
 message LoginValidationRequest{
     string username = 1;
-    string password = 2;
-    string salt = 3;
+    string email = 2;
+    string password = 3;
+    string salt = 4;
 }
 
 message LoginValidationResponse{
-    bool IsValidated = 1;
+    bool isValidated = 1;
     string token = 2;
+    string lastLogin = 3;
+    string message = 4;
 }

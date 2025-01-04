@@ -7,12 +7,13 @@ import (
 )
 
 type Users struct {
-	SecureId  string     `gorm:"column:id"`
-	CreatedAt time.Time  `gorm:"column:created_at"`
-	UpdatedAt *time.Time `gorm:"column:updated_at"`
-	Fullname  string     `gorm:"column:fullname"`
-	Email     string     `gorm:"column:email"`
-	Status    string     `gorm:"column:status"`
+	SecureId    string     `gorm:"column:id"`
+	CreatedAt   time.Time  `gorm:"column:created_at"`
+	UpdatedAt   *time.Time `gorm:"column:updated_at"`
+	Fullname    string     `gorm:"column:fullname"`
+	Email       string     `gorm:"column:email"`
+	PhoneNumber string     `gorm:"column:phone_number"`
+	Status      string     `gorm:"column:status"`
 }
 
 func (Users) TableName() string {
