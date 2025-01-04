@@ -1,0 +1,13 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+import "users_administration/users_list.proto";
+
+option go_package="/model";
+
+package model;
+
+service UsersAdministrationService{
+    rpc UsersList(google.protobuf.Empty) returns(UsersListResponse);
+}
+

@@ -10,5 +10,5 @@ message LoginValidationRequest{
 
 message LoginValidationResponse{
     bool IsValidated = 1;
-    string token = 2; 
+    string token = 2;
 }

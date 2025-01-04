@@ -1,0 +1,12 @@
+syntax="proto3";
+
+option go_package="/model";
+
+message UsersListResponse{
+    repeated UserData Users = 1;
+}
+
+message UserData{
+    string secureId = 1;
+    string fullName = 2;
+}
