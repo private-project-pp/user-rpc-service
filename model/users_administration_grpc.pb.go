@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	UsersAdministrationService_UsersList_FullMethodName = "/model.UsersAdministrationService/UsersList"
+	UsersAdministrationService_UserAdd_FullMethodName   = "/model.UsersAdministrationService/UserAdd"
 )
 
 // UsersAdministrationServiceClient is the client API for UsersAdministrationService service.
@@ -28,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UsersAdministrationServiceClient interface {
 	UsersList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UsersListResponse, error)
+	UserAdd(ctx context.Context, in *UserAddRequest, opts ...grpc.CallOption) (*UserAddResponse, error)
 }
 
 type usersAdministrationServiceClient struct {
@@ -48,14 +50,26 @@ func (c *usersAdministrationServiceClient) UsersList(ctx context.Context, in *em
 	return out, nil
 }
 
+func (c *usersAdministrationServiceClient) UserAdd(ctx context.Context, in *UserAddRequest, opts ...grpc.CallOption) (*UserAddResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserAddResponse)
+	err := c.cc.Invoke(ctx, UsersAdministrationService_UserAdd_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UsersAdministrationServiceServer is the server API for UsersAdministrationService service.
-// All implementations should embed UnimplementedUsersAdministrationServiceServer
+// All implementations must embed UnimplementedUsersAdministrationServiceServer
 // for forward compatibility.
 type UsersAdministrationServiceServer interface {
 	UsersList(context.Context, *emptypb.Empty) (*UsersListResponse, error)
+	UserAdd(context.Context, *UserAddRequest) (*UserAddResponse, error)
+	mustEmbedUnimplementedUsersAdministrationServiceServer()
 }
 
-// UnimplementedUsersAdministrationServiceServer should be embedded to have
+// UnimplementedUsersAdministrationServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
@@ -64,6 +78,11 @@ type UnimplementedUsersAdministrationServiceServer struct{}
 
 func (UnimplementedUsersAdministrationServiceServer) UsersList(context.Context, *emptypb.Empty) (*UsersListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UsersList not implemented")
+}
+func (UnimplementedUsersAdministrationServiceServer) UserAdd(context.Context, *UserAddRequest) (*UserAddResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserAdd not implemented")
+}
+func (UnimplementedUsersAdministrationServiceServer) mustEmbedUnimplementedUsersAdministrationServiceServer() {
 }
 func (UnimplementedUsersAdministrationServiceServer) testEmbeddedByValue() {}
 
@@ -103,6 +122,24 @@ func _UsersAdministrationService_UsersList_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UsersAdministrationService_UserAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAddRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsersAdministrationServiceServer).UserAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UsersAdministrationService_UserAdd_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsersAdministrationServiceServer).UserAdd(ctx, req.(*UserAddRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UsersAdministrationService_ServiceDesc is the grpc.ServiceDesc for UsersAdministrationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -113,6 +150,10 @@ var UsersAdministrationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UsersList",
 			Handler:    _UsersAdministrationService_UsersList_Handler,
+		},
+		{
+			MethodName: "UserAdd",
+			Handler:    _UsersAdministrationService_UserAdd_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

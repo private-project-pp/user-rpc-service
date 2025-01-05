@@ -2,6 +2,7 @@ syntax="proto3";
 
 import "google/protobuf/empty.proto";
 import "users_administration/users_list.proto";
+import "users_administration/user_add.proto";
 
 option go_package="/model";
 
@@ -9,5 +10,6 @@ package model;
 
 service UsersAdministrationService{
     rpc UsersList(google.protobuf.Empty) returns(UsersListResponse);
+    rpc UserAdd(UserAddRequest) returns(UserAddResponse);
 }
 
