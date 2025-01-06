@@ -1,6 +1,7 @@
 package users_administration
 
+import "github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
+
 type UsersAdministration interface {
-	// UsersList(context.Context, *emptypb.Empty) (*model.UsersListResponse, error)
-	// UserAdd(ctx context.Context, in *model.UserAddRequest) (out *model.UserAddResponse, err error)
+	UserAdd(fullname, email, phoneNumber string) (out responses.UserAddResponse, err error)
 }

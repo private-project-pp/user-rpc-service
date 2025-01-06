@@ -16,6 +16,14 @@ func SetupUsersRepo(db *gorm.DB) domain.Users {
 	}
 }
 
+func (r users) GetExistingUsers(email, phoneNumber string) (out entity.Users, err error) {
+	return out, nil
+}
+
+func (r users) SaveOrUpdateUser(in entity.Users) (err error) {
+	return nil
+}
+
 func (r users) GetAllUsers() (out []entity.Users, err error) {
 	err = r.db.Model(&entity.Users{}).Scan(&out).Error
 	if err == gorm.ErrRecordNotFound {

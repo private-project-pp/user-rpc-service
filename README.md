@@ -8,6 +8,13 @@ Compile .proto file by folder_name.
 protoc --proto_path=./proto --go_out=. --go-grpc_out=. ./proto/{folder_name}/*.proto
 ```
 
+Run unit test by spesific unit.
+```bash
+Example:
+
+go test -run ^TestUserAdd$ github.com/private-project-pp/user-rpc-service/usecase/users_administration
+```
+
 ## Usage
 ```bash
 make run
