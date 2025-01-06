@@ -2,15 +2,13 @@ package authentication
 
 import (
 	"github.com/private-project-pp/user-rpc-service/domain"
-	"github.com/private-project-pp/user-rpc-service/model"
 )
 
 type authService struct {
-	authRepo domain.AuthInformation
-	model.UnimplementedAuthenticationServiceServer
+	authRepo domain.UsersAuthInformation
 }
 
-func SetupAuthService(authRepo domain.AuthInformation) model.AuthenticationServiceServer {
+func SetupAuthService(authRepo domain.UsersAuthInformation) Authentication {
 	return &authService{
 		authRepo: authRepo,
 	}

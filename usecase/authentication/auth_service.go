@@ -1,4 +1,5 @@
 package authentication
 
-type AuthService interface {
+type Authentication interface {
+	// ValidateLogin(context.Context, *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error)
 }

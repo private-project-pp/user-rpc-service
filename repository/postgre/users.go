@@ -6,22 +6,21 @@ import (
 	"gorm.io/gorm"
 )
 
-type authInfo struct {
+type users struct {
 	db *gorm.DB
 }
 
-func SetupAuthInformationRepo(db *gorm.DB) domain.AuthInformation {
-	return &authInfo{
+func SetupUsersRepo(db *gorm.DB) domain.Users {
+	return &users{
 		db: db,
 	}
 }
 
-func (r authInfo) GetUserAuthList() (out []entity.AuthInformation, err error) {
-	err = r.db.Model(&entity.AuthInformation{}).Scan(&out).Error
+func (r users) GetAllUsers() (out []entity.Users, err error) {
+	err = r.db.Model(&entity.Users{}).Scan(&out).Error
 	if err == gorm.ErrRecordNotFound {
 		return out, nil
 	}
-
 	if err != nil {
 		return out, err
 	}
