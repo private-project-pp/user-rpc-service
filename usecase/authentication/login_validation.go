@@ -1,12 +1,6 @@
 package authentication
 
-import (
-	"context"
-
-	"github.com/private-project-pp/user-rpc-service/model"
-	"github.com/private-project-pp/user-rpc-service/shared/constant"
-)
-
+/*
 func (s authService) ValidateLogin(ctx context.Context, in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error) {
 	var (
 		isValidated bool
@@ -29,3 +23,4 @@ func (s authService) ValidateLogin(ctx context.Context, in *model.LoginValidatio
 	}
 	return out, nil
 }
+*/
