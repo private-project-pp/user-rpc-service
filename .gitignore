@@ -1,2 +1,3 @@
 /vendor
-shared/config/config.json
+
+/shared/config/*.json
