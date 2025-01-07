@@ -40,6 +40,20 @@ func (m *MockUsers) EXPECT() *MockUsersMockRecorder {
 	return m.recorder
 }
 
+// CreateUser mocks base method.
+func (m *MockUsers) CreateUser(in entity.Users) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateUser", in)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// CreateUser indicates an expected call of CreateUser.
+func (mr *MockUsersMockRecorder) CreateUser(in any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockUsers)(nil).CreateUser), in)
+}
+
 // GetAllUsers mocks base method.
 func (m *MockUsers) GetAllUsers() ([]entity.Users, error) {
 	m.ctrl.T.Helper()
@@ -68,18 +82,4 @@ func (m *MockUsers) GetExistingUsers(email, phoneNumber string) (entity.Users, e
 func (mr *MockUsersMockRecorder) GetExistingUsers(email, phoneNumber any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetExistingUsers", reflect.TypeOf((*MockUsers)(nil).GetExistingUsers), email, phoneNumber)
-}
-
-// SaveOrUpdateUser mocks base method.
-func (m *MockUsers) SaveOrUpdateUser(in entity.Users) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SaveOrUpdateUser", in)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// SaveOrUpdateUser indicates an expected call of SaveOrUpdateUser.
-func (mr *MockUsersMockRecorder) SaveOrUpdateUser(in any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveOrUpdateUser", reflect.TypeOf((*MockUsers)(nil).SaveOrUpdateUser), in)
 }

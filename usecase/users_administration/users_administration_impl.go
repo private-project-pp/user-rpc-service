@@ -4,7 +4,7 @@ import (
 	"github.com/private-project-pp/user-rpc-service/domain"
 )
 
-type userAdminService struct {
+type userAdmin struct {
 	authRepo domain.UsersAuthInformation
 	userRepo domain.Users
 }
@@ -13,7 +13,7 @@ func SetupUserAdministration(
 	authRepo domain.UsersAuthInformation,
 	userRepo domain.Users,
 ) UsersAdministration {
-	return &userAdminService{
+	return &userAdmin{
 		authRepo: authRepo,
 		userRepo: userRepo,
 	}

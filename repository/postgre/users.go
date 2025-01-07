@@ -20,7 +20,11 @@ func (r users) GetExistingUsers(email, phoneNumber string) (out entity.Users, er
 	return out, nil
 }
 
-func (r users) SaveOrUpdateUser(in entity.Users) (err error) {
+func (r users) CreateUser(in entity.Users) (err error) {
+	err = r.db.Create(&in).Error
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

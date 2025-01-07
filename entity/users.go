@@ -7,7 +7,7 @@ import (
 )
 
 type Users struct {
-	SecureId    string     `gorm:"column:id"`
+	Id          string     `gorm:"column:id;primaryKey"`
 	CreatedAt   time.Time  `gorm:"column:created_at"`
 	UpdatedAt   *time.Time `gorm:"column:updated_at"`
 	Fullname    string     `gorm:"column:fullname"`

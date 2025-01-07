@@ -31,7 +31,7 @@ func TestUserAdd(t *testing.T) {
 			},
 			usecase: func(a args) {
 				a.userRepo.EXPECT().GetExistingUsers("", "").Return(entity.Users{}, nil).Times(1)
-				a.userRepo.EXPECT().SaveOrUpdateUser(gomock.AssignableToTypeOf(entity.Users{})).Return(nil).Times(1)
+				a.userRepo.EXPECT().CreateUser(gomock.AssignableToTypeOf(entity.Users{})).Return(nil).Times(1)
 			},
 			wants: func(t *testing.T, uar responses.UserAddResponse, err error) {
 				assert.NotEqual(t, uar.SecureId, "", "Hasil harusnya tidak kosong")
@@ -44,8 +44,8 @@ func TestUserAdd(t *testing.T) {
 				userRepo: mocks_repository.NewMockUsers(mockCtrl),
 			},
 			usecase: func(a args) {
-				a.userRepo.EXPECT().GetExistingUsers("", "").Return(entity.Users{SecureId: "1", Status: constant.ACTIVE}, nil).Times(1)
-				a.userRepo.EXPECT().SaveOrUpdateUser(gomock.AssignableToTypeOf(entity.Users{})).Return(nil).Times(0)
+				a.userRepo.EXPECT().GetExistingUsers("", "").Return(entity.Users{Id: "1", Status: constant.ACTIVE}, nil).Times(1)
+				a.userRepo.EXPECT().CreateUser(gomock.AssignableToTypeOf(entity.Users{})).Return(nil).Times(0)
 			},
 			wants: func(t *testing.T, uar responses.UserAddResponse, err error) {
 				assert.Equal(t, uar.SecureId, "", "Hasil harusnya kosong")
@@ -56,7 +56,7 @@ func TestUserAdd(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			testedStruct := userAdminService{userRepo: test.args.userRepo}
+			testedStruct := userAdmin{userRepo: test.args.userRepo}
 			test.usecase(test.args)
 			response, err := testedStruct.UserAdd("", "", "")
 			test.wants(t, response, err)
