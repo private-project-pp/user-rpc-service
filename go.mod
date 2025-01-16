@@ -5,12 +5,12 @@ go 1.22
 require (
 	github.com/google/uuid v1.6.0
 	github.com/lib/pq v1.10.9
-	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250107090751-59aacdcc1819
+	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250116094542-ef49d7aa8ea2
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0
-	google.golang.org/grpc v1.69.2
-	google.golang.org/protobuf v1.36.2
+	google.golang.org/grpc v1.69.4
+	google.golang.org/protobuf v1.36.3
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.11
 )
@@ -47,7 +47,7 @@ require (
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250106144421-5f5ef82da422 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250115164207-1a7da9e5054f // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
