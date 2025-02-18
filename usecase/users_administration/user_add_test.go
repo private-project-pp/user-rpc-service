@@ -6,6 +6,7 @@ import (
 	"github.com/private-project-pp/user-rpc-service/entity"
 	mocks_repository "github.com/private-project-pp/user-rpc-service/mocks/repositories"
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
+	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/request"
 	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
@@ -23,6 +24,7 @@ func TestUserAdd(t *testing.T) {
 		args    args
 		usecase func(args)
 		wants   func(*testing.T, responses.UserAddResponse, error)
+		payload request.UserAddRequest
 	}{
 		{
 			name: "Success condition",
@@ -58,7 +60,7 @@ func TestUserAdd(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			testedStruct := userAdmin{userRepo: test.args.userRepo}
 			test.usecase(test.args)
-			response, err := testedStruct.UserAdd("", "", "")
+			response, err := testedStruct.UserAdd(test.payload)
 			test.wants(t, response, err)
 		})
 	}
