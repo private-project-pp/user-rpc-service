@@ -1,6 +1,10 @@
 package request
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/private-project-pp/pos-general-lib/stacktrace"
+)
 
 type UserAccountRegistrationReq struct {
 	UserId   string `json:"userId" validate:"required"`
@@ -8,9 +12,13 @@ type UserAccountRegistrationReq struct {
 	Password string `json:"password" validate:"required"`
 }
 
-func NewUserAccountRegistrationReq(in []byte) (out UserAccountRegistrationReq, err error) {
-	if err = json.Unmarshal(in, &out); err != nil {
-		return out, err
+func NewUserAccountRegistrationReq(in any) (out UserAccountRegistrationReq, err error) {
+	byteData, err := json.Marshal(in)
+	if err != nil {
+		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
+	}
+	if err = json.Unmarshal(byteData, &out); err != nil {
+		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
 	}
 	return out, nil
 }

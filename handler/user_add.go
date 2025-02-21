@@ -12,7 +12,7 @@ func (s userService) UserAdd(ctx context.Context, in *model.UserAddRequest) (out
 
 	req, err := request.NewUserAddRequest(in.GetPayload())
 	if err != nil {
-		return out, err
+		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
 	}
 
 	resp, err := s.userAdm.UserAdd(req)

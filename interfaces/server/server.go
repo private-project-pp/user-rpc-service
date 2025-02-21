@@ -11,7 +11,8 @@ import (
 	"github.com/private-project-pp/user-rpc-service/shared/config"
 	"github.com/private-project-pp/user-rpc-service/usecase/authentication"
 	"github.com/private-project-pp/user-rpc-service/usecase/users_administration"
-	"google.golang.org/grpc"
+
+	"github.com/private-project-pp/pos-general-lib/infrastructure"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -23,7 +24,7 @@ func StartServer() (err error) {
 		return err
 	}
 
-	server := grpc.NewServer()
+	server := infrastructure.GrpcInstanceServer()
 	reflection.Register(server)
 
 	// setup repository

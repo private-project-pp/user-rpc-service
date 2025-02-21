@@ -9,5 +9,5 @@ import (
 type UsersAdministration interface {
 	UserAdd(in request.UserAddRequest) (out responses.UserAddResponse, err error)
 	UserList() (out []*model.UserData, err error)
-	UserAccountRegistrationReq(in request.UserAccountRegistrationReq) (out responses.UserAccountRegistration, err error)
+	UserAccountRegistration(in request.UserAccountRegistrationReq) (out *model.UserRegistrationResponse, err error)
 }
