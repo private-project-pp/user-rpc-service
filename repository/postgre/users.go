@@ -37,7 +37,7 @@ func (r users) GetExistingUsers(email, phoneNumber string) (out entity.Users, er
 func (r users) CreateUser(in entity.Users) (err error) {
 	err = r.db.Create(&in).Error
 	if err != nil {
-		return err
+		return stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
 	return nil
 }
@@ -48,7 +48,7 @@ func (r users) GetAllUsers() (out []entity.Users, err error) {
 		return out, nil
 	}
 	if err != nil {
-		return out, err
+		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
 	return out, nil
 }

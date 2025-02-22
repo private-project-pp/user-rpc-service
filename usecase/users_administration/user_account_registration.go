@@ -15,18 +15,20 @@ func (u userAdmin) UserAccountRegistration(in *model.UserRegistrationRequestPayl
 		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
 
-	hashedPassword, err := utils.GeneratePasswordHash(in.Password, "")
+	hashedPassword, err := utils.GenerateHashedPassword(in.GetPassword())
 	if err != nil {
 		return out, stacktrace.Cascade(err, stacktrace.BAD_PROCESSING, err.Error())
 	}
 
 	regUser := entity.UsersAuthInformation{
 		SecureId: uuid.New().String(),
-		// Username: in.Username,
+		Username: in.GetUsername(),
 		UserId:   userData.Id,
 		Password: hashedPassword,
 	}
-
-	_ = regUser
+	err = u.authRepo.SaveUserAuthInformation(regUser)
+	if err != nil {
+		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
+	}
 	return out, nil
 }

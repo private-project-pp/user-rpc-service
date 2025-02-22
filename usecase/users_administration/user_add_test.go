@@ -6,7 +6,8 @@ import (
 	"github.com/private-project-pp/user-rpc-service/entity"
 	mocks_repository "github.com/private-project-pp/user-rpc-service/mocks/repositories"
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/request"
+
+	// "github.com/private-project-pp/user-rpc-service/usecase/users_administration/request"
 	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"

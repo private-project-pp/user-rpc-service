@@ -6,7 +6,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/lib/pq v1.10.9
 	github.com/private-project-pp/pos-general-lib v0.0.0-20250221083620-41764c3be858
-	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250221074212-45689b904b34
+	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250222064208-d026c9f0b422
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0

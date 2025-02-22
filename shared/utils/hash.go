@@ -3,11 +3,12 @@ package utils
 import (
 	"github.com/private-project-pp/pos-general-lib/shared/utils"
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
+	"github.com/private-project-pp/user-rpc-service/shared/config"
 )
 
-func GeneratePasswordHash(value, key string) (hashed string, err error) {
+func GenerateHashedPassword(value string) (hashed string, err error) {
 
-	hashed, err = utils.Generate256Hash(value, key)
+	hashed, err = utils.Generate256Hash(value, config.Auth.PassHashCode)
 	if err != nil {
 		return hashed, stacktrace.Cascade(err, stacktrace.BAD_PROCESSING, err.Error())
 	}

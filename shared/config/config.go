@@ -10,6 +10,7 @@ import (
 type ConfigApp struct {
 	Service ServiceConfig `mapstructure:"service" yaml:"service"`
 	Db      DbConfig      `mapstructure:"db" yaml:"db"`
+	Auth    AuthConfig    `mapstructure:"auth" yaml:"auth"`
 }
 
 type ServiceConfig struct {
@@ -21,9 +22,14 @@ type DbConfig struct {
 	Host string `mapstructure:"host" yaml:"host"`
 }
 
+type AuthConfig struct {
+	PassHashCode string `mapstructure:"pass_hash_code" yaml:"pass_hash_code"`
+}
+
 var (
 	Service ServiceConfig
 	DB      DbConfig
+	Auth    AuthConfig
 )
 
 func SetupConfig() (out ConfigApp) {
@@ -42,6 +48,7 @@ func SetupConfig() (out ConfigApp) {
 
 	Service = out.Service
 	DB = out.Db
+	Auth = out.Auth
 	return out
 }
 
