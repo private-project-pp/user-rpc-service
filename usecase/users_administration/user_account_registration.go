@@ -6,10 +6,15 @@ import (
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
 	"github.com/private-project-pp/user-rpc-service/entity"
 	"github.com/private-project-pp/user-rpc-service/shared/utils"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/request"
 )
 
-func (u userAdmin) UserAccountRegistration(in request.UserAccountRegistrationReq) (out *model.UserRegistrationResponse, err error) {
+func (u userAdmin) UserAccountRegistration(in *model.UserRegistrationRequestPayload) (out *model.UserRegistrationResponse, err error) {
+
+	userData, err := u.userRepo.GetUserDataById(in.GetUserId())
+	if err != nil {
+		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
+	}
+
 	hashedPassword, err := utils.GeneratePasswordHash(in.Password, "")
 	if err != nil {
 		return out, stacktrace.Cascade(err, stacktrace.BAD_PROCESSING, err.Error())
@@ -17,8 +22,8 @@ func (u userAdmin) UserAccountRegistration(in request.UserAccountRegistrationReq
 
 	regUser := entity.UsersAuthInformation{
 		SecureId: uuid.New().String(),
-		Username: in.Username,
-		UserId:   in.UserId,
+		// Username: in.Username,
+		UserId:   userData.Id,
 		Password: hashedPassword,
 	}
 

@@ -5,22 +5,22 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
+	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
 	"github.com/private-project-pp/user-rpc-service/entity"
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/request"
 	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
 )
 
-func (s userAdmin) UserAdd(in request.UserAddRequest) (out responses.UserAddResponse, err error) {
+func (s userAdmin) UserAdd(in *model.UserAddRequestPayload) (out responses.UserAddResponse, err error) {
 	out.Message = constant.FAILED
 	if in.Fullname == "" {
-		err = errors.New("Nama lengkap wajib diisi")
-		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
+		err = errors.New("nama lengkap wajib diisi")
+		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
 	}
 
 	if in.PhoneNumber == "" {
-		err = errors.New("Nomor telepon wajib diisi")
-		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
+		err = errors.New("nomor telepon wajib diisi")
+		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
 	}
 
 	newUser := entity.Users{
