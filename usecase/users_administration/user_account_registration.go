@@ -5,6 +5,7 @@ import (
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
 	"github.com/private-project-pp/user-rpc-service/entity"
+	"github.com/private-project-pp/user-rpc-service/shared/constant"
 	"github.com/private-project-pp/user-rpc-service/shared/utils"
 )
 
@@ -21,10 +22,13 @@ func (u userAdmin) UserAccountRegistration(in *model.UserRegistrationRequestPayl
 	}
 
 	regUser := entity.UsersAuthInformation{
-		SecureId: uuid.New().String(),
-		Username: in.GetUsername(),
-		UserId:   userData.Id,
-		Password: hashedPassword,
+		SecureId:  uuid.New().String(),
+		CreatedAt: utils.GetUtcTime(),
+		CreatedBy: in.GetUserId(),
+		UserId:    userData.Id,
+		Password:  hashedPassword,
+		Username:  in.GetUsername(),
+		Status:    constant.ACTIVE,
 	}
 	err = u.authRepo.SaveUserAuthInformation(regUser)
 	if err != nil {

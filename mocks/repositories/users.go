@@ -83,3 +83,18 @@ func (mr *MockUsersMockRecorder) GetExistingUsers(email, phoneNumber any) *gomoc
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetExistingUsers", reflect.TypeOf((*MockUsers)(nil).GetExistingUsers), email, phoneNumber)
 }
+
+// GetUserDataById mocks base method.
+func (m *MockUsers) GetUserDataById(id string) (entity.Users, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetUserDataById", id)
+	ret0, _ := ret[0].(entity.Users)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetUserDataById indicates an expected call of GetUserDataById.
+func (mr *MockUsersMockRecorder) GetUserDataById(id any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserDataById", reflect.TypeOf((*MockUsers)(nil).GetUserDataById), id)
+}

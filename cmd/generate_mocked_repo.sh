@@ -2,7 +2,8 @@
 dbDomains=`ls domain/*.go`
 for eachFile in $dbDomains
 do
-    echo $eachFile;
+    echo ${eachFile##*/};
+    mockgen -source=domain/${eachFile##*/} -destination=mocks/repositories/${eachFile##*/} -package=mocks_repository
 done
 # if [ "$1" = "ALL" ]; then
 #     echo "Semua $1"

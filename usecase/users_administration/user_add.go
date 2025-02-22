@@ -8,6 +8,7 @@ import (
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
 	"github.com/private-project-pp/user-rpc-service/entity"
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
+	"github.com/private-project-pp/user-rpc-service/shared/utils"
 	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
 )
 
@@ -25,6 +26,7 @@ func (s userAdmin) UserAdd(in *model.UserAddRequestPayload) (out responses.UserA
 
 	newUser := entity.Users{
 		Id:          uuid.New().String(),
+		CreatedAt:   utils.GetUtcTime(),
 		Fullname:    in.Fullname,
 		PhoneNumber: in.PhoneNumber,
 		Status:      constant.ACTIVE,

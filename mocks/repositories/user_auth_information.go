@@ -69,3 +69,17 @@ func (mr *MockUsersAuthInformationMockRecorder) GetUserByCredential(email, usern
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByCredential", reflect.TypeOf((*MockUsersAuthInformation)(nil).GetUserByCredential), email, username, password)
 }
+
+// SaveUserAuthInformation mocks base method.
+func (m *MockUsersAuthInformation) SaveUserAuthInformation(in entity.UsersAuthInformation) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SaveUserAuthInformation", in)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// SaveUserAuthInformation indicates an expected call of SaveUserAuthInformation.
+func (mr *MockUsersAuthInformationMockRecorder) SaveUserAuthInformation(in any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveUserAuthInformation", reflect.TypeOf((*MockUsersAuthInformation)(nil).SaveUserAuthInformation), in)
+}

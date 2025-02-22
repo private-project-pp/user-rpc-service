@@ -14,4 +14,4 @@ spes-test:
 gen-mock-all: gen-mock-repo
 
 gen-mock-repo:
-	mockgen -source=domain/*.go -destination=mocks/repositories/*.go -package=mocks_repository
+	cmd/generate_mocked_repo.sh

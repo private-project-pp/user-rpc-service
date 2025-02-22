@@ -51,3 +51,7 @@ func (r authInfoRepo) SaveUserAuthInformation(in entity.UsersAuthInformation) (e
 	}
 	return nil
 }
+
+func (r authInfoRepo) GetLastLoginByUserId(userId string) (out entity.UserAuditTrail, err error) {
+	return out, nil
+}
