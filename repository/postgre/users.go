@@ -1,6 +1,7 @@
 package postgre
 
 import (
+	"github.com/private-project-pp/pos-general-lib/stacktrace"
 	"github.com/private-project-pp/user-rpc-service/domain"
 	"github.com/private-project-pp/user-rpc-service/entity"
 	"gorm.io/gorm"
@@ -16,6 +17,19 @@ func SetupUsersRepo(db *gorm.DB) domain.Users {
 	}
 }
 
+func (r users) GetUserDataById(id string) (out entity.Users, err error) {
+	err = r.db.Where("id = ?", id).Scan(&out).Error
+	if err != gorm.ErrRecordNotFound {
+		return out, stacktrace.Cascade(err, stacktrace.DATA_NOT_FOUND, err.Error())
+	}
+
+	if err != nil {
+		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
+	}
+
+	return out, nil
+}
+
 func (r users) GetExistingUsers(email, phoneNumber string) (out entity.Users, err error) {
 	return out, nil
 }
@@ -23,7 +37,7 @@ func (r users) GetExistingUsers(email, phoneNumber string) (out entity.Users, er
 func (r users) CreateUser(in entity.Users) (err error) {
 	err = r.db.Create(&in).Error
 	if err != nil {
-		return err
+		return stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
 	return nil
 }
@@ -34,7 +48,7 @@ func (r users) GetAllUsers() (out []entity.Users, err error) {
 		return out, nil
 	}
 	if err != nil {
-		return out, err
+		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
 	return out, nil
 }
