@@ -1,12 +1,9 @@
 package main
 
 import (
-	"github.com/private-project-pp/user-rpc-service/interfaces/server"
+	"github.com/private-project-pp/user-rpc-service/cmd"
 )
 
 func main() {
-	err := server.StartServer()
-	if err != nil {
-		panic(err)
-	}
+	cmd.StartServer()
 }

@@ -5,8 +5,8 @@ go 1.23.4
 require (
 	github.com/google/uuid v1.6.0
 	github.com/lib/pq v1.10.9
-	github.com/private-project-pp/pos-general-lib v0.0.0-20250221083620-41764c3be858
-	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250222064208-d026c9f0b422
+	github.com/private-project-pp/pos-general-lib v0.0.0-20250224070207-b53c2bd22c37
+	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250222165845-aa547febbc12
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0
