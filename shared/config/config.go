@@ -14,8 +14,9 @@ type ConfigApp struct {
 }
 
 type ServiceConfig struct {
-	Name string `mapstructure:"name" yaml:"name"`
-	Port string `mapstructure:"port" yaml:"port"`
+	Name    string `mapstructure:"name" yaml:"name"`
+	Port    string `mapstructure:"port" yaml:"port"`
+	LogFile string `mapstructure:"log_file" yaml:"log_file"`
 }
 
 type DbConfig struct {

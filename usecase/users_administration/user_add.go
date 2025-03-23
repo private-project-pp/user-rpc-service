@@ -14,12 +14,12 @@ import (
 
 func (s userAdmin) UserAdd(in *model.UserAddRequestPayload) (out responses.UserAddResponse, err error) {
 	out.Message = constant.FAILED
-	if in.Fullname == "" {
+	if in.GetFullname() == "" {
 		err = errors.New("nama lengkap wajib diisi")
-		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
+		return out, stacktrace.CascadeWithClientMessage(err, stacktrace.INVALID_INPUT, err.Error())
 	}
 
-	if in.PhoneNumber == "" {
+	if in.GetPhoneNumber() == "" {
 		err = errors.New("nomor telepon wajib diisi")
 		return out, stacktrace.Cascade(err, stacktrace.INVALID_INPUT, err.Error())
 	}
@@ -27,8 +27,8 @@ func (s userAdmin) UserAdd(in *model.UserAddRequestPayload) (out responses.UserA
 	newUser := entity.Users{
 		Id:          uuid.New().String(),
 		CreatedAt:   utils.GetUtcTime(),
-		Fullname:    in.Fullname,
-		PhoneNumber: in.PhoneNumber,
+		Fullname:    in.GetFullname(),
+		PhoneNumber: in.GetPhoneNumber(),
 		Status:      constant.ACTIVE,
 	}
 
