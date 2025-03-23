@@ -1,7 +1,9 @@
 
-run:
-	go run main.go
+run: compile
+	./cmd/compiled.exe
 
+compile:
+	go build -o cmd/compiled.exe
 cmdtes:
 	cmd/generate_proto.sh
 
@@ -15,3 +17,4 @@ gen-mock-all: gen-mock-repo
 
 gen-mock-repo:
 	cmd/generate_mocked_repo.sh
+

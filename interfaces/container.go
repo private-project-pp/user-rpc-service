@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"github.com/private-project-pp/pos-general-lib/infrastructure"
+	"github.com/private-project-pp/pos-general-lib/logger"
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
 	"github.com/private-project-pp/user-rpc-service/handler"
 	"github.com/private-project-pp/user-rpc-service/repository/postgre"
@@ -16,14 +17,19 @@ import (
 )
 
 func Container() (err error) {
-
+	fmt.Println("Start container")
 	configs := config.SetupConfig()
 	db, err := SetupDatabase(configs)
 	if err != nil {
 		return err
 	}
 
-	server := infrastructure.GrpcInstanceServer()
+	logging, err := logger.SetupLogger(configs.Service.LogFile)
+	if err != nil {
+		return err
+	}
+
+	server := infrastructure.GrpcInstanceServer(logging)
 	reflection.Register(server)
 
 	// setup repository
@@ -42,19 +48,13 @@ func Container() (err error) {
 
 	model.RegisterUserServiceServer(server, rpcHandler)
 
-	// setup service-usecase
-	// authService := authentication.SetupAuthService(authInfoRepo)
-	// userAdmService := users_administration.SetupUserAdministration(authInfoRepo, usersRepo)
-	// model.RegisterAuthenticationServiceServer(server, authService)
-	// model.RegisterUsersAdministrationServiceServer(server, userAdmService)
-
 	listen, err := net.Listen("tcp", configs.Service.Port)
 	if err != nil {
 		return err
 	}
 
 	fmt.Println("RUNNING GRPC")
-	fmt.Printf("Running on PORT [%s]", config.Service.Port)
+	fmt.Printf("Running on PORT [%s] \n", config.Service.Port)
 	if err = server.Serve(listen); err != nil {
 		return err
 	}

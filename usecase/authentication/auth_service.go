@@ -5,5 +5,5 @@ import (
 )
 
 type Authentication interface {
-	ValidateLogin(in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error)
+	ValidateUser(in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error)
 }

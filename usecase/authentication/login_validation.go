@@ -6,7 +6,7 @@ import (
 	"github.com/private-project-pp/user-rpc-service/shared/constant"
 )
 
-func (s authService) ValidateLogin(in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error) {
+func (s authService) ValidateUser(in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error) {
 	var (
 		isValidated bool
 		token       string
