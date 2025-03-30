@@ -29,7 +29,13 @@ func Container() (err error) {
 		return err
 	}
 
-	server := infrastructure.GrpcInstanceServer(logging)
+	mwConn, err := infrastructure.SetupMiddlewareClientConnection(configs.Internal.MiddlewareRpcService.Address)
+	if err != nil {
+		return err
+	}
+	defer mwConn.CloseConnection()
+
+	server := infrastructure.GrpcInstanceServer(logging, mwConn)
 	reflection.Register(server)
 
 	// setup repository
