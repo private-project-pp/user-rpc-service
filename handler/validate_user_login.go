@@ -9,7 +9,7 @@ import (
 
 func (rpc userService) ValidateUserLogin(ctx context.Context, in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error) {
 
-	out, err = rpc.auth.ValidateLogin(in)
+	out, err = rpc.auth.ValidateUser(in)
 	if err != nil {
 		return out, stacktrace.Cascade(err, stacktrace.INTERNAL_SERVER_ERROR, err.Error())
 	}
