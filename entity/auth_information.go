@@ -13,6 +13,7 @@ type UsersAuthInformation struct {
 	UpdatedAt time.Time `gorm:"column:created_at"`
 	UpdatedBy string    `gorm:"column:created_by"`
 	UserId    string    `gorm:"column:user_id"`
+	Role      string    `gorm:"column:role"`
 	Password  string    `gorm:"column:password"`
 	Username  string    `gorm:"column:username"`
 	Status    string    `gorm:"column:status"`

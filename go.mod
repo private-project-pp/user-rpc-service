@@ -5,12 +5,12 @@ go 1.23.4
 require (
 	github.com/google/uuid v1.6.0
 	github.com/lib/pq v1.10.9
-	github.com/private-project-pp/pos-general-lib v0.0.0-20250330022940-723496301c44
+	github.com/private-project-pp/pos-general-lib v0.0.0-20250401160700-875a2841efa1
 	github.com/private-project-pp/pos-grpc-contract v0.0.0-20250222165845-aa547febbc12
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0
-	google.golang.org/grpc v1.71.0
+	google.golang.org/grpc v1.71.1
 	google.golang.org/protobuf v1.36.5
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.11

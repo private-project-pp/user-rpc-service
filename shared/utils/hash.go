@@ -8,7 +8,7 @@ import (
 
 func GenerateHashedPassword(value string) (hashed string, err error) {
 
-	hashed, err = utils.Generate256Hash(value, config.Auth.PassHashCode)
+	hashed, err = utils.GenerateSHA256Hash(value, config.Auth.PassHashCode)
 	if err != nil {
 		return hashed, stacktrace.Cascade(err, stacktrace.BAD_PROCESSING, err.Error())
 	}

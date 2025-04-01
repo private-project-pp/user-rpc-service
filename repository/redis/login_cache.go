@@ -1,5 +1,5 @@
 package redis
 
-func (r redis) SaveUserLoginCache(sessionKey string) (key string, err error) {
-	return key, nil
+func (r redis) SaveUserLoginCache(sessionKey, sessionInfo string) (err error) {
+	return
 }
