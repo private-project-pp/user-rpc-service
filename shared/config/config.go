@@ -8,9 +8,10 @@ import (
 )
 
 type ConfigApp struct {
-	Service ServiceConfig `mapstructure:"service" yaml:"service"`
-	Db      DbConfig      `mapstructure:"db" yaml:"db"`
-	Auth    AuthConfig    `mapstructure:"auth" yaml:"auth"`
+	Service  ServiceConfig  `mapstructure:"service" yaml:"service"`
+	Db       DbConfig       `mapstructure:"db" yaml:"db"`
+	Auth     AuthConfig     `mapstructure:"auth" yaml:"auth"`
+	Internal InternalConfig `mapstructure:"internal" yaml:"internal"`
 }
 
 type ServiceConfig struct {
@@ -25,6 +26,15 @@ type DbConfig struct {
 
 type AuthConfig struct {
 	PassHashCode string `mapstructure:"pass_hash_code" yaml:"pass_hash_code"`
+	JwtSecureKey string `mapstructure:"jwt_secure_key" yaml:"jwt_secure_key"`
+}
+
+type InternalConfig struct {
+	MiddlewareRpcService RpcServiceConfig `mapstructure:"middleware_rpc_service" yaml:"middleware_rpc_service"`
+}
+
+type RpcServiceConfig struct {
+	Address string `mapstructure:"address" yaml:"address"`
 }
 
 var (
