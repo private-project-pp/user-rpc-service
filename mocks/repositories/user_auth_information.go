@@ -12,7 +12,7 @@ package mocks_repository
 import (
 	reflect "reflect"
 
-	entity "github.com/private-project-pp/user-rpc-service/entity"
+	entity "github.com/private-project-pp/user-rpc-service/internal/model/entity"
 	gomock "go.uber.org/mock/gomock"
 )
 

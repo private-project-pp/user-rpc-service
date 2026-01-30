@@ -2,7 +2,7 @@ package interfaces
 
 import (
 	_ "github.com/lib/pq"
-	"github.com/private-project-pp/user-rpc-service/shared/config"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

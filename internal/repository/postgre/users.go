@@ -2,8 +2,8 @@ package postgre
 
 import (
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
-	"github.com/private-project-pp/user-rpc-service/domain"
-	"github.com/private-project-pp/user-rpc-service/entity"
+	"github.com/private-project-pp/user-rpc-service/internal/model"
+	"github.com/private-project-pp/user-rpc-service/internal/model/entity"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ type users struct {
 	db *gorm.DB
 }
 
-func SetupUsersRepo(db *gorm.DB) domain.Users {
+func SetupUsersRepo(db *gorm.DB) model.Users {
 	return &users{
 		db: db,
 	}

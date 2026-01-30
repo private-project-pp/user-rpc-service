@@ -4,11 +4,11 @@ import (
 	"testing"
 
 	"github.com/private-project-pp/user-rpc-service/entity"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/constant"
 	mocks_repository "github.com/private-project-pp/user-rpc-service/mocks/repositories"
-	"github.com/private-project-pp/user-rpc-service/shared/constant"
 
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
+	"github.com/private-project-pp/user-rpc-service/internal/usecase/users_administration/responses"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
 )

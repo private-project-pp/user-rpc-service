@@ -3,7 +3,7 @@ package entity
 import (
 	"time"
 
-	"github.com/private-project-pp/user-rpc-service/shared/constant"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/constant"
 )
 
 type UserAuditTrail struct {

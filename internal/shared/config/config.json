@@ -1,0 +1,9 @@
+{
+    "service":{
+        "name":"user_rpc_service",
+        "port":":8090"
+    },
+    "db":{
+        "host":"postgresql://root:12345678@192.168.1.102:3002/playground?search_path=public"
+    }
+}

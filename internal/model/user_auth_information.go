@@ -1,6 +1,6 @@
-package domain
+package model
 
-import "github.com/private-project-pp/user-rpc-service/entity"
+import "github.com/private-project-pp/user-rpc-service/internal/model/entity"
 
 type UsersAuthInformation interface {
 	GetUserByCredential(email, username, password string) (out entity.UsersAuthInformation, err error)

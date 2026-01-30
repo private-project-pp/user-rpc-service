@@ -4,9 +4,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
-	"github.com/private-project-pp/user-rpc-service/entity"
-	"github.com/private-project-pp/user-rpc-service/shared/constant"
-	"github.com/private-project-pp/user-rpc-service/shared/utils"
+	"github.com/private-project-pp/user-rpc-service/internal/model/entity"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/constant"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/utils"
 )
 
 func (u userAdmin) UserAccountRegistration(in *model.UserRegistrationRequestPayload) (out *model.UserRegistrationResponse, err error) {

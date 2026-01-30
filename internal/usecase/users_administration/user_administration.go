@@ -2,7 +2,7 @@ package users_administration
 
 import (
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration/responses"
+	"github.com/private-project-pp/user-rpc-service/internal/usecase/users_administration/responses"
 )
 
 type UsersAdministration interface {

@@ -2,8 +2,8 @@ package postgre
 
 import (
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
-	"github.com/private-project-pp/user-rpc-service/domain"
-	"github.com/private-project-pp/user-rpc-service/entity"
+	"github.com/private-project-pp/user-rpc-service/internal/model"
+	"github.com/private-project-pp/user-rpc-service/internal/model/entity"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ type authInfoRepo struct {
 	db *gorm.DB
 }
 
-func SetupAuthInformationRepo(db *gorm.DB) domain.UsersAuthInformation {
+func SetupAuthInformationRepo(db *gorm.DB) model.UsersAuthInformation {
 	return &authInfoRepo{
 		db: db,
 	}

@@ -3,7 +3,7 @@ package authentication
 import (
 	"github.com/private-project-pp/pos-general-lib/stacktrace"
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
-	"github.com/private-project-pp/user-rpc-service/shared/constant"
+	"github.com/private-project-pp/user-rpc-service/internal/shared/constant"
 )
 
 func (s authService) ValidateUser(in *model.LoginValidationRequest) (out *model.LoginValidationResponse, err error) {

@@ -2,8 +2,8 @@ package handler
 
 import (
 	model "github.com/private-project-pp/pos-grpc-contract/model/user_service"
-	"github.com/private-project-pp/user-rpc-service/usecase/authentication"
-	"github.com/private-project-pp/user-rpc-service/usecase/users_administration"
+	"github.com/private-project-pp/user-rpc-service/internal/usecase/authentication"
+	"github.com/private-project-pp/user-rpc-service/internal/usecase/users_administration"
 )
 
 type userService struct {
